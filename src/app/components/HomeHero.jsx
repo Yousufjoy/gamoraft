@@ -1,23 +1,30 @@
 "use client";
-import React from "react";
-// import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 function HomeHero() {
-  const numberOfParticles = 40; // Maintained number of particles
+  const numberOfParticles = 40;
+  const [particles, setParticles] = useState([]);
+
+  useEffect(() => {
+    // Generate particles only on the client side
+    setParticles(
+      Array.from({ length: numberOfParticles }, () => ({
+        width: Math.random() * 10 + 4 + "px",
+        height: Math.random() * 10 + 4 + "px",
+        top: Math.random() * 100 + "%",
+        left: Math.random() * 100 + "%",
+        opacity: Math.random() * 0.5 + 0.3,
+        animationDuration: Math.random() * 3 + 4 + "s",
+        animationDelay: "-" + Math.random() * 3 + "s",
+      }))
+    );
+  }, []);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* <Image
-          src="/assets/hero-background.jpg" // Replace with your actual image path
-          alt="Hero Background"
-          layout="fill"
-          objectFit="cover"
-          quality={75}
-          priority
-        /> */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/70 to-black/80"></div>
       </div>
 
@@ -48,21 +55,19 @@ function HomeHero() {
 
       {/* Animated Elements - Slower animation & Natural movement */}
       <div className="absolute inset-0 z-0 opacity-40">
-        {[...Array(numberOfParticles)].map((_, i) => (
+        {particles.map((particle, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-white"
-            style={
-              {
-                width: Math.random() * 10 + 4 + "px", // Size (4-14px)
-                height: Math.random() * 10 + 4 + "px", // Size (4-14px)
-                top: Math.random() * 100 + "%",
-                left: Math.random() * 100 + "%",
-                opacity: Math.random() * 0.5 + 0.3,
-                animation: `float ${Math.random() * 3 + 4}s linear infinite`, // Slower duration (4-7s)
-                animationDelay: `-${Math.random() * 3}s`, // Natural delay
-              }
-            }
+            style={{
+              width: particle.width,
+              height: particle.height,
+              top: particle.top,
+              left: particle.left,
+              opacity: particle.opacity,
+              animation: `float ${particle.animationDuration} linear infinite`,
+              animationDelay: particle.animationDelay,
+            }}
           />
         ))}
       </div>
@@ -74,13 +79,13 @@ function HomeHero() {
           }
           25% {
             transform: translateY(-10px) translateX(5px);
-          } // More subtle movement
+          }
           50% {
             transform: translateY(-20px) translateX(0);
-          } // More natural movement
+          }
           75% {
             transform: translateY(-10px) translateX(-5px);
-          } // More subtle movement
+          }
           100% {
             transform: translateY(0) translateX(0);
           }
