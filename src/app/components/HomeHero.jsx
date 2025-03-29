@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 
 function HomeHero() {
-  const numberOfParticles = 40; // Increased number of particles
+  const numberOfParticles = 40; // Maintained number of particles
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -46,21 +46,23 @@ function HomeHero() {
         </div>
       </div>
 
-      {/* Animated Elements - Faster animation & More particles */}
+      {/* Animated Elements - Slower animation & Natural movement */}
       <div className="absolute inset-0 z-0 opacity-40">
         {[...Array(numberOfParticles)].map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full bg-white"
-            style={{
-              width: Math.random() * 6 + 2 + "px",
-              height: Math.random() * 6 + 2 + "px",
-              top: Math.random() * 100 + "%",
-              left: Math.random() * 100 + "%",
-              opacity: Math.random() * 0.5 + 0.3,
-              animation: `float ${Math.random() * 2 + 3}s linear infinite`, // Even faster duration (3-5s)
-              animationDelay: `-${Math.random() * 3}s`, // Shorter delay
-            }}
+            style={
+              {
+                width: Math.random() * 10 + 4 + "px", // Size (4-14px)
+                height: Math.random() * 10 + 4 + "px", // Size (4-14px)
+                top: Math.random() * 100 + "%",
+                left: Math.random() * 100 + "%",
+                opacity: Math.random() * 0.5 + 0.3,
+                animation: `float ${Math.random() * 3 + 4}s linear infinite`, // Slower duration (4-7s)
+                animationDelay: `-${Math.random() * 3}s`, // Natural delay
+              }
+            }
           />
         ))}
       </div>
@@ -72,13 +74,13 @@ function HomeHero() {
           }
           25% {
             transform: translateY(-10px) translateX(5px);
-          } // Reduced movement
+          } // More subtle movement
           50% {
             transform: translateY(-20px) translateX(0);
-          } // Reduced movement
+          } // More natural movement
           75% {
             transform: translateY(-10px) translateX(-5px);
-          } // Reduced movement
+          } // More subtle movement
           100% {
             transform: translateY(0) translateX(0);
           }
