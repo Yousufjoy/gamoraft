@@ -1,13 +1,16 @@
 "use client";
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 function OurGame() {
   const gameScreenshots = [
-    { id: 1, src: "/assets/3.jpg", alt: "Game Screenshot 1" },
-    { id: 2, src: "/assets/3.jpg", alt: "Game Screenshot 2" },
-    { id: 3, src: "/assets/3.jpg", alt: "Game Screenshot 3" }
+    { id: 1, src: "/assets/ss1.png", alt: "Game Screenshot 1" },
+    { id: 2, src: "/assets/ss2.png", alt: "Game Screenshot 2" },
+    { id: 3, src: "/assets/ss3.png", alt: "Game Screenshot 3" },
+    { id: 4, src: "/assets/ss4.png", alt: "Game Screenshot 4" },
+    { id: 5, src: "/assets/ss5.png", alt: "Game Screenshot 5" },
+    { id: 6, src: "/assets/ss6.png", alt: "Game Screenshot 1" },
+
   ];
 
   return (
@@ -21,19 +24,17 @@ function OurGame() {
         <div className="flex flex-col lg:flex-row items-center gap-12 mb-16">
           <div className="lg:w-1/2">
             <div className="relative group overflow-hidden rounded-lg shadow-xl">
-              <Image
+              <img
                 src="/assets/4.png"
                 alt="Game Main Screenshot"
-                width={500} // Adjust based on your design
-                height={300} // Adjust based on your design.  Maintain aspect ratio.
-                layout="responsive"
-                objectFit="cover"
-                className="transition-transform duration-700 group-hover:scale-110"
+                width={500}
+                height={300}
+                className="w-full h-auto transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-              <div className="absolute bottom-0 left-0 p-6">
+              {/* <div className="absolute bottom-0 left-0 p-6">
                 <span className="bg-purple-600 text-white px-4 py-1 text-sm font-bold rounded-full">ACTION RPG</span>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -60,16 +61,14 @@ function OurGame() {
           {gameScreenshots.map(screenshot => (
             <div key={screenshot.id} className="overflow-hidden rounded-lg shadow-lg group">
               <div className="relative">
-                <Image
+                <img
                   src={screenshot.src}
                   alt={screenshot.alt}
-                  width={400} // Adjust based on your design
-                  height={250} // Adjust based on your design. Maintain aspect ratio.
-                  layout="responsive"
-                  objectFit="cover"
-                  className="transition-transform duration-500 group-hover:scale-110"
+                  width={400}
+                  height={250}
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+                <div className="absolute inset-0  opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
               </div>
             </div>
           ))}

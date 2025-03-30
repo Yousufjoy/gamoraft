@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 function Navbar() {
@@ -12,14 +11,13 @@ function Navbar() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image
+            <img
               src="/assets/logo.png"
               alt="Gamoraft Logo"
               width={84} // Or whatever width you desire
               height={64} // Or whatever height you desire, keep aspect ratio
             />
           </Link>
-
 
           <div className="hidden md:flex space-x-8">
             <Link href="/" className="text-white hover:text-purple-400 font-medium transition-colors">Home</Link>
